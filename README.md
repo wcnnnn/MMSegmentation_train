@@ -40,37 +40,35 @@ data/ade/ADEChallengeData2016/
 
 ## 可用模型
 
-| 模型类别 | 模型名称 | 训练脚本 |
-|---------|---------|----------|
-| **基础卷积模型** | FCN | train_fcn.py |
-|  | PSPNet | train_pspnet.py |
-|  | DeepLabV3+ | train_deeplabv3plus.py |
-|  | UPerNet | train_upernet.py |
-|  | OCRNet | train_ocrnet.py |
-| **注意力机制模型** | GCNet | train_gcnet.py |
-|  | ISANet | train_isanet.py |
-|  | NonLocal | train_nonlocal.py |
-|  | DNLNet | train_dnlnet.py |
-|  | PSANet | train_psanet.py |
-|  | DMNet | train_dmnet.py |
-|  | ENCNet | train_encnet.py |
-| **Transformer系列** | SegFormer | train_segformer.py |
-|  | Segmenter | train_segmenter.py |
-|  | SegNext | train_segnext.py |
-|  | SETR | train_setr.py |
-|  | ViT-Adapter | train_vit_deit.py |
-| **实例分割模型** | Mask2Former | train_mask2former.py |
-|  | MaskFormer | train_maskformer.py |
-|  | PointRend | train_pointrend.py |
-|  | KNet | train_knet.py |
-| **轻量级模型** | MobileNetV2 | train_mobilenetv2.py |
-|  | PoolFormer | train_poolformer.py |
-| **其他特色模型** | FastFCN | train_fastfcn.py |
-|  | ResNeSt | train_resnest.py |
-|  | SeMask | train_sem_fpn.py |
-|  | STDC | train_stdc.py |
-|  | Twins | train_twins.py |
-|  | SWIN | train_swin.py |
+| 类别 | 模型 | 训练脚本 | 说明 |
+|:---:|:---|:---|:---|
+| **基础卷积** | FCN | train_fcn.py | 全卷积网络 |
+| | PSPNet | train_pspnet.py | 金字塔场景解析 |
+| | DeepLabV3+ | train_deeplabv3plus.py | 带编解码器的空洞卷积 |
+| | UPerNet | train_upernet.py | 统一感知解析 |
+| | OCRNet | train_ocrnet.py | 目标上下文表示 |
+| **注意力机制** | GCNet | train_gcnet.py | 全局上下文网络 |
+| | ISANet | train_isanet.py | 交互式自注意力 |
+| | NonLocal | train_nonlocal.py | 非局部注意力 |
+| | DNLNet | train_dnlnet.py | 双重注意力 |
+| | PSANet | train_psanet.py | 点采样注意力 |
+| **Transformer** | SegFormer | train_segformer.py | 分层Transformer |
+| | Segmenter | train_segmenter.py | 纯Transformer分割 |
+| | SegNext | train_segnext.py | 下一代分割器 |
+| | SETR | train_setr.py | Transformer编码器 |
+| | ViT-Adapter | train_vit_deit.py | 视觉Transformer适配器 |
+| **实例分割** | Mask2Former | train_mask2former.py | 掩码注意力 |
+| | MaskFormer | train_maskformer.py | 掩码生成 |
+| | PointRend | train_pointrend.py | 点渲染 |
+| | KNet | train_knet.py | 核网络 |
+| **轻量级** | MobileNetV2 | train_mobilenetv2.py | 移动端优化 |
+| | PoolFormer | train_poolformer.py | 池化Transformer |
+| **其他** | FastFCN | train_fastfcn.py | 快速全卷积 |
+| | ResNeSt | train_resnest.py | 分割增强残差网络 |
+| | SeMask | train_sem_fpn.py | 语义掩码特征金字塔 |
+| | STDC | train_stdc.py | 短时程动态卷积 |
+| | Twins | train_twins.py | 孪生Transformer |
+| | SWIN | train_swin.py | 层次化窗口Transformer | 
 
 ## 训练说明
 
@@ -90,17 +88,3 @@ python train_fcn.py
 - 模型权重保存在: `work_dirs/{model_name}_ade20k/`
 - 训练日志保存在: `work_dirs/{model_name}_ade20k/`
 - 每个模型保留最新的3个检查点
-
-## 注意事项
-
-1. 显存需求:
-- 基础模型(FCN等): 8GB显存足够
-- 高级模型(KNet等): 建议11GB以上显存
-
-2. 训练时间:
-- 40k iterations: 约12-15小时
-- 80k iterations: 约24-30小时
-
-3. 常见问题:
-- 如果出现显存不足，可以尝试减小batch_size
-- 如果训练速度慢，可以减小num_workers的值
